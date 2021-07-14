@@ -1,0 +1,127 @@
+ <%- include('../../admin/layout/header'); -%>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Edit Beneficiary</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Edit Beneficiary</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+    <% var messages = getMessages(); %>
+    <% if(messages.success){ %>
+     
+    <div class="alert alert-block alert-success">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="ace-icon fa fa-times"></i>
+        </button>  
+        <i class="ace-icon fa fa-check green"></i>  
+            <%=messages.success%>  
+    </div> 
+    <%}else if(messages.error){%>  
+        <div class="alert alert-block alert-danger">
+            <button type="button" class="close" data-dismiss="alert">
+                <i class="ace-icon fa fa-times"></i>
+            </button>  
+            <i class="ace-icon fa fa-close red"></i>  <%=messages.error%>  
+        </div>  
+    <%}%> 
+      <div class="container-fluid">
+         <form id="editcategories" method="POST" action="/beneficiaries/editsave" enctype="multipart/form-data" >
+
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" placeholder="Name" value="<%= data.name %>" class="form-control" id="name" name="name">
+            </div>   
+
+            <div class="form-group">
+              <label for="name">Relation</label>
+              <input type="text" placeholder="Relation" value="<%= data.relation %>" class="form-control" id="relation" name="relation">
+            </div> 
+
+            <div class="form-group">
+              <label for="name">Email</label>
+              <input type="text" placeholder="Email" value="<%= data.email %>" class="form-control" id="email" name="email" required>
+            </div> 
+
+            <div class="form-group">
+              <label for="name">Phone</label>
+              <input type="text" placeholder="Phone" value="<%= data.workContact %>" class="form-control" id="workContact" name="workContact" required>
+            </div>  
+
+            <div class="form-group">
+              <label for="name">Mobile</label>
+              <input type="text" placeholder="Mobile" value="<%= data.mobileNumber %>" class="form-control" id="phone" name="mobileNumber">
+            </div>
+
+            <div class="form-group">
+              <label for="name">Image</label>
+              <input type="file" name="image" class="form-control">
+            </div>  
+
+            <div class = "container" style="display : inline-flex">
+            <% if(data.image && data.image != ""){{%>
+              <div class="DD mr-4" style="display:grid">
+                <!--<i class="fa fa-trash bFileDel" data-id="<%=data.id%> "></i>-->
+
+                <img  class="b_file_name_<%=data.id%>" src="<%=data.image%>" alt="" width="50" height="50">
+              </div>
+            <% }} %>
+            </div>
+
+            <div>
+             <input type="hidden" name="id" value="<%= data.id %>"/>
+            </div>
+
+            <button type="submit" name="categorysave" class="btn btn-primary">Submit</button>
+        </form>
+       
+      </div>
+      <!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+ <script>
+ $(document).ready(function(){
+    $(document).on('change','#upload_image',function(e){
+        readURL(this)
+    })
+ })
+
+
+ function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#show_image').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]); // convert to base64 string
+  }
+}
+
+ </script>
+
+
+<%- include('../../admin/layout/footer'); -%>

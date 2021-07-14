@@ -1,0 +1,25 @@
+{
+  "name": "basharadminpanel",
+  "version": "1.0.0",
+  "description": "For more detail, please visit: > [Node.js JWT Authentication & Authorization example](https://bezkoder.com/node-js-jwt-authentication-mysql/)",
+  "main": "server.js",
+  "dependencies": {
+    "crypto-random-string": "^3.3.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
+    "mysql2": "^2.2.5",
+    "nodemailer": "^6.4.17",
+    "sequelize": "^5.22.3",
+    "twilio": "^3.55.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

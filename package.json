@@ -1,0 +1,49 @@
+{
+  "name": "node-js-jwt-auth",
+  "version": "1.0.0",
+  "description": "Node.js Demo for JWT Authentication",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node.js",
+    "jwt",
+    "authentication",
+    "express",
+    "mysql"
+  ],
+  "author": "bezkoder",
+  "license": "ISC",
+  "dependencies": {
+    "ba64": "^3.0.9",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "cron": "^1.8.2",
+    "crypto-random-string": "^3.3.0",
+    "dateformat": "^4.5.1",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "express-flash-messages": "^0.1.1",
+    "express-session": "^1.17.1",
+    "fcm-node": "^1.5.2",
+    "fs": "0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
+    "node-localstorage": "^2.1.6",
+    "nodemailer": "^6.4.17",
+    "path": "^0.12.7",
+    "pm2": "^4.5.4",
+    "sequelize": "^5.22.3",
+    "store": "^2.0.12",
+    "templatesjs": "^2.0.0",
+    "timepicker": "^1.13.18",
+    "twilio": "^3.55.1"
+  }
+}

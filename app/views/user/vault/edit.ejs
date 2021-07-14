@@ -1,0 +1,165 @@
+ <%- include('../../admin/layout/header'); -%>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Edit Vault</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Edit Vault</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+         <form id="editcategories" method="POST" action="/vault/edit/save" enctype="multipart/form-data" >
+
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" placeholder="Name" value="<%= data.name %>" class="form-control" id="name" name="name">
+            </div>   
+
+            <!--<div class="form-group">
+              <label for="relation">Phone Number</label>
+             <input type="number" placeholder="Phone Number" value="<%= data.phoneNumber %>" class="form-control" id="relation" name="phoneNumber" required>
+            </div> -->
+
+            <div class="form-group">
+              <label for="name">Attach Files</label>
+              <input type="file" name="files" class="form-control" multiple accept=".pdf,.xlsx,.docx,.doc,.xls">
+            </div>
+
+            <div class = "container" style="display : inline-flex">
+            <% if(vaultFiles.length > 0){ 
+              vaultFiles.forEach(function(el, index) {
+            %>
+              <div class="DD mr-4" style="display:grid">
+                <i class="fa fa-trash vFileDel" data-id="<%=el.dataValues.id%> "></i>
+
+                <img  class="file_name_<%=el.dataValues.id%>" src="<%=nodeSiteUrl%>/upload/default/vault-doc.png" alt="" width="50" height="50">
+                <span> <%= el.dataValues.fileName %> </span>
+              </div>
+            <% }); } %>
+            </div>
+
+            <div class="form-group">
+              <label>Select Beneficiary </label>
+              <div class="mulibeneSelect">
+                <% if(beneficiary.length > 0){ %>
+                  <select class="form-control" name="beneficiaryId" id="multiple-checkboxes" multiple="multiple">
+                    <% beneficiary.forEach(function(b) { %>
+                        <option value= <%=b.id%><%if(data.beneficiaryId.includes(b.id) ) {%> selected <% } %> > <%=b.name%>  </option>                
+                    <% }); %>
+                  </select>                
+                <% } else{ %>  
+                 <select class="form-control" name="beneficiaryId" id="multiple-checkboxes" required>
+                        <option value="">Select</option>                
+                    </select> 
+                <% } %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="mobile">Trigger Type</label>
+            </div>
+
+            <div class="form-group">
+              <label class="radio-inline col-md-5">
+                <input type="radio" value="1" name="triggerType" <%if(data.triggerType == 1) {%> checked <% } %> >Passing
+              </label>
+
+              <label class="radio-inline col-md-5">
+                <input type="radio" value="2" name="triggerType" <%if(data.triggerType == 2) {%> checked <% } %>>Time Target
+              </label>
+            </div>
+
+            
+              <div class="form-group t_inputs <% if(data.triggerType == 1) { %> hide <% } %> ">
+                <div class="input-group date" id="datepicker" data-provide="datepicker">
+                  <input type="text" class="form-control"
+                  value = "<%=data.triggerDate%>" name="triggerDate">
+                  <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-th"></span>
+                  </div>
+                </div>
+              </div> 
+
+              <div class="form-group t_inputs <% if(data.triggerType == 1) { %> hide <% } %>">
+                <div class="form-group t_inputs ">
+                  <input class="form-control" name="triggerTime" type="text" id="datetimepicker" value = "<%=timeString%>" readonly>
+                </div> 
+              </div> 
+
+              <div class="form-group alert_classes <% if(data.triggerType == 2) { %> hide <% } %> ">
+                <label for="mobile">Alert before information released</label>
+              </div>
+
+              <div class="form-group alert_classes <% if(data.triggerType == 2) { %> hide <% } %> ">
+                  <label class="radio-inline col-md-5">
+                    <input type="radio" value="1" name="alertDuration" <%if(data.alertDuration == 1) {%> checked <% } %> >3 Days
+                  </label>
+
+                  <label class="radio-inline col-md-5">
+                    <input type="radio" value="2" name="alertDuration" <%if(data.alertDuration == 2) {%> checked <% } %> >1 week
+                  </label>
+              </div>
+
+
+            <div class="form-group">
+              <label for="email">Notes and Instruction</label>
+              <input type="text" placeholder="Note and instruction" value="<%= data.notes %>" class="form-control" id="notes" name="notes" required>
+            </div> 
+
+            <div>
+              <input type="hidden" name="vaultId" value="<%= data.id %>"/>
+            </div>
+
+            <button type="submit" name="categorysave" class="btn btn-primary">Submit</button>
+        </form>
+       
+      </div>
+      <!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+ <script>
+ $(document).ready(function(){
+    $(document).on('change','#upload_image',function(e){
+        readURL(this)
+    })
+ })
+
+
+ function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#show_image').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]); // convert to base64 string
+  }
+}
+
+ </script>
+
+
+<%- include('../../admin/layout/footer'); -%>

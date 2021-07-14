@@ -1,0 +1,144 @@
+ <%- include('../../admin/layout/header'); -%>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Add Vault</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Add Vault</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+
+    <% var messages = getMessages(); %>
+    <% if(messages.success){ %>
+     
+    <div class="alert alert-block alert-success">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="ace-icon fa fa-times"></i>
+        </button>  
+        <i class="ace-icon fa fa-check green"></i>  
+            <%=messages.success%>  
+    </div> 
+    <%}else if(messages.error){%>  
+        <div class="alert alert-block alert-danger">
+            <button type="button" class="close" data-dismiss="alert">
+                <i class="ace-icon fa fa-times"></i>
+            </button>  
+            <i class="ace-icon fa fa-close red"></i>  <%=messages.error%>  
+        </div>  
+    <%}%>  
+
+      <div class="container-fluid">
+         <form id="addVault" method="POST" action="/vault/save" enctype="multipart/form-data" >
+            
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" placeholder="Name" value="" class="form-control" id="name" name="name" required>
+            </div>  
+
+            <!--<div class="form-group">
+              <label for="relation">Phone Number</label>
+              <input type="number" placeholder="Phone Number" value="" class="form-control" id="relation" name="phoneNumber" required>
+            </div>-->
+
+            <div class="form-group">
+              <label for="name">Attach Files</label>
+              <input type="file" name="files" class="form-control" multiple accept=".pdf,.xlsx,.docx,.doc,.xls">
+            </div> 
+
+            <div class="form-group">
+              <label>Select Beneficiary </label>
+              <div class="mulibeneSelect">
+                <% if(beneficiary.length > 0){ %>
+                  <select class="form-control" name="beneficiaryId" id="multiple-checkboxes" multiple="multiple">
+                    <% beneficiary.forEach(function(b) { %>
+                        <option value= <%=b.id%>> <%=b.name%> </option>                
+                    <% }); %>
+                  </select>                
+                <% } else{ %>  
+                  <select class="form-control" name="beneficiaryId" id="multiple-checkboxes" required>
+                      <option value="">Select</option>                
+                  </select> 
+                <% } %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="mobile">Trigger Type</label>
+            </div>
+
+            <div class="form-group">
+              <label class="radio-inline col-md-5">
+                <input type="radio" value="1" name="triggerType" checked>Passing
+              </label>
+
+              <label class="radio-inline col-md-5">
+                <input type="radio" value="2" name="triggerType">Time Target
+              </label>
+            </div>
+
+            <div class="form-group t_inputs hide">
+              <div class="input-group date" id="datepicker" data-provide="datepicker">
+                <input placeholder="Trigger Date" type="text" class="form-control" name="triggerDate" autocomplete="off">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+              </div>
+            </div> 
+
+          <div class="form-group t_inputs hide">
+            <div class="form-group t_inputs hide">
+              <input placeholder="Trigger Time" class="form-control" name="triggerTime" type="text" id="datetimepicker" readonly>
+            </div> 
+          </div>
+
+
+          <div class="form-group alert_classes">
+            <label for="mobile">Alert before information released</label>
+          </div>
+
+          <div class="form-group alert_classes">
+              <label class="radio-inline col-md-5">
+                <input type="radio" value="1" name="alertDuration" checked>3 Days
+              </label>
+
+              <label class="radio-inline col-md-5 alert_classes">
+                <input type="radio" value="2" name="alertDuration">1 week
+              </label>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Notes and Instruction</label>
+            <input type="text" placeholder="Note and instruction" value="" class="form-control" id="notes" name="notes" required>
+          </div>  
+             
+            <button type="submit" name="abc" class="btn btn-primary">Submit</button>
+        </form>
+       
+      </div>
+      <!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+ 
+
+
+<%- include('../../admin/layout/footer'); -%>

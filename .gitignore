@@ -1,0 +1,11 @@
+node_modules/
+config/config.json
+public/uploads/
+public/assets/images/
+.env
+package-lock.json
+basharDetails
+/app/views/admin/assets/upload/*
+/app/views/admin/assets/pdf/*
+/app/views/admin/assets___1/*
+

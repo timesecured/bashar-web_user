@@ -1,0 +1,45 @@
+<div style="font-family: Helvetica Neue, Helvetica, Helvetic, Arial, sans-serif">
+   <table style="width: 100%">
+      <tr>
+         <td></td>
+         <td bgcolor="#FFFFFF ">
+            <div border: 1px solid blue">
+               <table style="width: 100%;background: #F66801 ">
+                  <tr>
+                     <td></td>
+                     <td>
+                        <div>
+                           <table width="100%">
+                              <tr>
+                                 <td rowspan="2" style="text-align:center;padding:10px"> <img src="${constant.imageUrl}time-secured.jpg" style="width: 130px; height: auto" /> </td>
+                              </tr>
+                           </table>
+                        </div>
+                     </td>
+                     <td></td>
+                  </tr>
+                  <table style="padding: 10px;font-size:14px; width:100%">
+                  <tr>
+                     <td style="padding:10px;font-size:14px; width:100%">
+                        <p> <br /> Hi <b> <%= getBeneficiary.dataValues.name %></b>!</p>
+                        <p>
+                        <%= getUser.dataValues.firstName %> <%= getUser.dataValues.lastName %> has selected you to receive documents for your information to be accessed upon <%= {getUser.dataValues.firstName %>  <%= getUser.dataValues.lastName %> passing.  Time Secured is an app that will secure the documents the <%= getUser.dataValues.firstName%> <%= getUser.dataValues.lastName %> had created for you until they are no longer living.
+                        Upon their passing, please make a request through the link below. Time Secured will confirm with <%= getUser.dataValues.firstName %> <%= getUser.dataValues.lastName %> if the files are ready to be shared, and they may have the option to reject the request if they are still living.  However if they have passed or no response is received you will receive a confirmation email with a link to access the intended files.  You may access the files either through the Time Secured website. 
+                        You may also download the Time Secured iOS or Android App to access the files and download for your records.
+                        Link
+                        Should you require more information or details on the nature of the files please contact <%= getUser.dataValues.firstName %> <%= getUser.dataValues.lastName %> directly at <%= getUser.dataValues.email %>.  If you have any technical issues or are unclear on the above instructions, please contact Time Secured directly at timesecured@outlook.com.
+                        </p>
+                        <p>Regards,</p>
+                        <p>Time Secured</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <div align="center" style="font-size:12px; margin-top:20px; padding:5px; width:100%; background:#eee"> ⓒ <a style="text-decoration:none">Time Secured </a> Copyright 2020 </div>
+                     </td>
+                  </tr>
+            </div>
+         </td>
+      </tr>
+   </table>
+</div>

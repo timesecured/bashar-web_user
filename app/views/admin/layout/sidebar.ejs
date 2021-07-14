@@ -1,0 +1,49 @@
+<!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="" class="brand-link">
+      <img src="<%=nodeSiteUrl%>/home_assets/images/dashboard.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">TimeSecure</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <!-- <li class="nav-item has-treeview <%=controller=='dashboard' && action =='dashboard' ? 'active menu-open' : '' %>">
+            <a href="<%=nodeAdminUrl%>/dashboard" class="nav-link <%=controller=='dashboard' && action =='dashboard' ? 'active' : '' %>">
+              <i class="nav-icon fas fa-tachometer-alt"></i> 
+              <p>
+                Dashboard
+              </p>
+            </a>
+          </li> -->
+          
+          <li class="nav-item has-treeview <%=controller=='Beneficiaries' && action =='list' || controller=='Beneficiaries' && action =='add'  || controller=='Beneficiaries' && action =='Beneficiarieslist' ? 'active menu-open' : '' %>">
+            <a href="<%=nodeAdminUrl%>/beneficiaries/list" class="nav-link <%=controller=='Users' && action =='list' || controller=='Beneficiaries' && action =='add'  || controller=='Beneficiaries' && action =='Beneficiaries' ? 'active' : '' %>">
+              <i class="nav-icon fa fa-user"></i>
+              <p>
+                Beneficiaries
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item has-treeview <%=controller=='Vault' && action =='list' || controller=='Vault' && action =='add'  || controller=='Vault' && action =='restaurantlist' ? 'active menu-open' : '' %>">
+            <a href="<%=nodeAdminUrl%>/vault/list" class="nav-link <%=controller=='Vault' && action =='list' || controller=='Vault' && action =='add'  || controller=='Vault' && action =='Vault' ? 'active' : '' %>">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Vaults
+              </p>
+            </a>
+          </li>
+          
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

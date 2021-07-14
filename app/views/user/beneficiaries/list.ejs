@@ -1,0 +1,104 @@
+
+ <%- include('../../admin/layout/header'); -%>
+
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Beneficiary List</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Beneficiary List</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+
+      <% var messages = getMessages(); %>
+      <% if(messages.success){ %>
+       
+      <div class="alert alert-block alert-success">
+          <button type="button" class="close" data-dismiss="alert">
+              <i class="ace-icon fa fa-times"></i>
+          </button>  
+          <i class="ace-icon fa fa-check green"></i>  
+              <%=messages.success%>  
+      </div> 
+      <%}else if(messages.error){%>  
+          <div class="alert alert-block alert-danger">
+              <button type="button" class="close" data-dismiss="alert">
+                  <i class="ace-icon fa fa-times"></i>
+              </button>  
+              <i class="ace-icon fa fa-close red"></i>  <%=messages.error%>  
+          </div>  
+      <%}%>  
+
+
+      <a title="Add" style="padding:3px 7px 1px 7px; margin: 4px; float:right; border: 1px solid #95999e;display: inline-block;color:white; background: #007bff;border-radius: 4px;" title="add" class="add" href="<%=nodeAdminUrl%>/beneficiaries/add">Add beneficiary</a>
+
+        <table id="example" class="table table-striped table-bordered" style="width:100%">
+          <thead>
+              <tr>
+                  <th>Sr no</th>
+                  <th>Name</th>
+                  <th>Relation</th>
+                  <th>Phone</th>
+                  <th>Mobile</th>
+                  <th>Email</th>
+                  <th>Action</th>
+              </tr>
+          </thead>
+          <tbody>
+            <% if(data.length){  
+               for(var i = 0;i < data.length;i++) { %>
+              <tr>
+                  <td><%=i+1%></td>
+                  <td><%=data[i].name%></td>
+                  <td><%=data[i].relation%></td>
+                  <td><%=data[i].workContact%></td>
+                  <td><%=data[i].mobileNumber%></td>
+                  <td><%=data[i].email%></td>
+                  <td style ="display: inline-flex;"> 
+
+                <a title="Edit" style="padding:1px 5px 0px 5px; margin: 4px; border: 1px solid #95999e;display: inline-block;background: #aa9f9f17;border-radius: 4px;" title="edit" class="edit" data-id="<%=data[i].id%>" href="<%=nodeAdminUrl%>/beneficiaries/edit/<%=data[i].id%>"><i class="fa fa-edit" style="color:#0275d8;"></i>
+                </a>
+
+                <a title="Delete" style="padding:1px 5px 0px 5px; margin: 4px; border: 1px solid #95999e;display: inline-block;background: #aa9f9f17;border-radius: 4px;" title="delete" class="edit delete delete_beneficiary" data-id="<%=data[i].id%>"><i class="fa fa-trash" style="color: #b61010;"></i>
+                </a>
+
+               </td>
+              </tr> 
+
+               <% }  }else{ %>
+                    <tr>  <td colspan="5">No record found</td>  </tr>
+            <% } %>  
+                     
+          </tbody>      
+      </table>
+       
+      </div>
+      <!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <%- include('../../admin/layout/footer'); -%>
